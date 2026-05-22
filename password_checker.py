@@ -52,6 +52,7 @@ def calc_score (password):
     length_score = check_length(password)
     upper_score = check_uppercase(password)
     digit_score = check_digits(password)
+    
     total = length_score + upper_score + digit_score
     return total
 
@@ -75,6 +76,11 @@ def display_results (password):
 # MAIN FLOW
 
 password = input("What is your password? ")
-results = display_results(password)
 
-#### need to include error handling
+try:
+    if password == "":
+        raise ValueError("Password cannot be blank.")
+except ValueError as error:
+    print(error)
+
+results = display_results(password)
