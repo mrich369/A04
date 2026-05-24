@@ -22,14 +22,19 @@ import random
 
 # FUNCTIONS
 
-def get_valid_input ():
-    num_of_rounds = input("How many rounds do you want to play? (1-5): ")
-    while not num_of_rounds.isdigit() or int(num_of_rounds) > 5 or int(num_of_rounds) < 1:
-        print("Invalid input. Please enter a number between 1 and 5.")
-        num_of_rounds = input("How many rounds do you want to play? (1-5): ")
-    num_of_rounds = int(num_of_rounds)
-    return num_of_rounds
-
+def get_valid_input (prompt):
+    while True:
+        try:
+            num_of_rounds = int(input(prompt))
+            if num_of_rounds > 5 or num_of_rounds < 1:
+                raise TypeError
+            return num_of_rounds
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+        except TypeError:
+            print("Invalid input. Please enter a number between 1 and 5.")
+    
+    
 def roll_dice ():
     return random.randint(1,6)
 
@@ -73,7 +78,7 @@ show final results with ultimate winner
 user_score = 0
 comp_score = 0
 
-total_rounds = get_valid_input()
+total_rounds = get_valid_input("How many rounds do you want to play? (1-5): ")
 
 for round_number in range(total_rounds):
     user_roll_dice = roll_dice()
