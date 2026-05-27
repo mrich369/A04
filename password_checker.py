@@ -49,6 +49,7 @@ def check_digits (password):
 
 def calc_score (password):
     """ calls all check functions, returns score as integer """
+
     length_score = check_length(password)
     upper_score = check_uppercase(password)
     digit_score = check_digits(password)
@@ -58,6 +59,12 @@ def calc_score (password):
 
 def display_results (password):
     """ prints password, overall password strength score (weak, moderate, strong) """
+
+    try:
+        if password == "":
+            raise ValueError("Password cannot be blank.")
+    except ValueError as error:
+        print(error)
 
     total = calc_score(password)
     if total == 3:
@@ -77,10 +84,6 @@ def display_results (password):
 
 password = input("What is your password? ")
 
-try:
-    if password == "":
-        raise ValueError("Password cannot be blank.")
-except ValueError as error:
-    print(error)
+
 
 results = display_results(password)

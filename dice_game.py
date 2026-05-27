@@ -75,19 +75,21 @@ show final results with ultimate winner
 
 """
 
-user_score = 0
-comp_score = 0
+def play_dice_game ():
 
-total_rounds = get_valid_input("How many rounds do you want to play? (1-5): ")
+    user_score = 0
+    comp_score = 0
 
-for round_number in range(total_rounds):
-    user_roll_dice = roll_dice()
-    comp_roll_dice = roll_dice()
-    print(f"\nYou rolled {user_roll_dice}. Computer rolled {comp_roll_dice}.")
-    round_winner = determine_winner(user_roll_dice, comp_roll_dice)
-    if round_winner == "user_win":
-        user_score += 1
-    elif round_winner == "comp_win":
-        comp_score += 1
+    total_rounds = get_valid_input("How many rounds do you want to play? (1-5): ")
 
-show_scoreboard(user_score, comp_score)
+    for round_number in range(total_rounds):
+        user_roll_dice = roll_dice()
+        comp_roll_dice = roll_dice()
+        print(f"\nYou rolled {user_roll_dice}. Computer rolled {comp_roll_dice}.")
+        round_winner = determine_winner(user_roll_dice, comp_roll_dice)
+        if round_winner == "user_win":
+            user_score += 1
+        elif round_winner == "comp_win":
+            comp_score += 1
+
+    show_scoreboard(user_score, comp_score)
